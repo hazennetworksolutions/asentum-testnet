@@ -6,7 +6,7 @@
 
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04+-E95420?style=flat-square&logo=ubuntu&logoColor=white)](https://ubuntu.com)
 [![Asentum](https://img.shields.io/badge/Asentum-Testnet-6C4DF6?style=flat-square)](https://www.asentum.com)
-[![Chain ID](https://img.shields.io/badge/Chain%20ID-1418-blue?style=flat-square)](https://www.asentum.com/docs/reference/network-parameters)
+[![Chain ID](https://img.shields.io/badge/Chain%20ID-1423-blue?style=flat-square)](https://www.asentum.com/docs/reference/network-parameters)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
 [hazennetworksolutions.com](https://hazennetworksolutions.com)
@@ -16,9 +16,10 @@
 ---
 
 > **Author:** HazenNetworkSolutions
-> **Network:** Asentum Testnet (Chain ID: `1418` / `0x58a`)
+> **Network:** Asentum Testnet (Chain ID: `1423` / `0x58f`)
 > **Node type:** Consensus validator (bonded full node)
-> **Last Updated:** September 2026
+> **Validator release:** `0.8.4`
+> **Last Updated:** October 2026
 
 ---
 
@@ -32,27 +33,32 @@
 
 ## 📋 Overview
 
-Asentum: post-quantum (Dilithium3) JavaScript L1. Native coin `ASE` (18 decimals). Public testnet live at chain ID `1418`.
+Asentum: post-quantum (Dilithium3) JavaScript L1. Native coin `ASE` (18 decimals). Public testnet live at chain ID `1423`.
 
 - Docs: [asentum.com/docs](https://www.asentum.com/docs)
-- RPC / Explorer: [testnet.asentum.com](https://testnet.asentum.com)
-- Validator set: [testnet.asentum.com/validators](https://testnet.asentum.com/validators)
+- RPC / Explorer: [explorer.asentum.com](https://explorer.asentum.com) (also served at [testnet.asentum.com](https://testnet.asentum.com))
+- Validator set: [explorer.asentum.com/validators](https://explorer.asentum.com/validators)
+- Faucet: [airdrop.asentum.com](https://airdrop.asentum.com)
 - Telegram: [t.me/asentum](https://t.me/asentum)
 
 ### Network Facts
 
 | Field | Value |
 |---|---|
-| Chain ID | `1418` (`0x58a`) |
+| Chain ID | `1423` (`0x58f`) |
 | Native token | ASE (18 decimals) |
-| RPC / Explorer | `https://testnet.asentum.com` |
-| Consensus | Aura + GRANDPA (newer ref) / Tendermint-style (older guide) — docs conflict |
-| Block time | ~2s (docs conflict, some say 5s) |
-| Min self-bond | `500 ASE` (new ref) vs `50,000 ASE` (old guide) — verify live |
-| Unbonding | 14 days |
+| RPC / Explorer | `https://explorer.asentum.com` |
+| Consensus | Aura (block production) + GRANDPA (finality, 2/3 stake-weighted) |
+| Block time | 2s target (real block time varies with load) |
+| Epoch | 300 blocks |
+| Min self-bond | `500 ASE` (chain-enforced, makes you a candidate) |
+| Max self-bond | `50,000,000 ASE` |
+| Signing committee | 100 seats per epoch: 50 core (largest stakes) + 50 stake-weighted lottery |
+| Unbonding | 1,296,000 blocks (~30 days at 2s blocks; longer when blocks are slower) |
+| Slashing | Tombstone only (double-sign); no stake burned on testnet today |
 | Signatures | ML-DSA-65 / Dilithium3 |
 
-> ⚠️ Official docs contradict themselves on min bond, block time, and consensus — verify live values before bonding. See `guide-en.md` for a source-trust warning on the install scripts.
+> ⚠️ Values from the official [Network Parameters](https://www.asentum.com/docs/reference/network-parameters) page (Oct 2026). Never delete `/opt/asentum/data` — `validator.key` lives there; use `asentum-validator resync` for a stuck node. See `guide-en.md` for the v0.8.4 update flow, the heap-limit warning for shared servers, and the source-trust warning on the install scripts.
 
 ---
 
